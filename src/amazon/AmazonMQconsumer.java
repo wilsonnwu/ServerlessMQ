@@ -40,8 +40,8 @@ public class AmazonMQconsumer {
         // Create a connection factory.
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("ssl://b-180629ee-2111-4330-a5b7-caa37767887a-1.mq.us-east-2.amazonaws.com:61617");
 
-        connectionFactory.setUserName("admin");
-        connectionFactory.setPassword("Activemq@123");
+        connectionFactory.setUserName("***");
+        connectionFactory.setPassword("***");
         String clientid = UUID.randomUUID().toString();     
         //connectionFactory.setClientID("Virtual");
         // Establish a connection for the consumer.
