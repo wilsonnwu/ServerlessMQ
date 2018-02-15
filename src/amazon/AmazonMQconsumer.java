@@ -1,8 +1,24 @@
 package amazon;
 
+/*
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://aws.amazon.com/apache2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ *
+ */
 
 import org.apache.activemq.jms.pool.PooledConnectionFactory;
 import java.util.Random;
+import java.util.ResourceBundle;
 import java.util.UUID;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
@@ -23,10 +39,17 @@ public class AmazonMQconsumer {
     public static void main(String[] args) throws JMSException {
 
         // Create a connection factory.
-        ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("ssl://b-180629ee-2111-4330-a5b7-caa37767887a-1.mq.us-east-2.amazonaws.com:61617");
+		ResourceBundle rb = ResourceBundle.getBundle("config");
+		String url = rb.getString("connection.url");
+		String usrname = rb.getString("username");
+		String pwd = rb.getString("password");
 
-        connectionFactory.setUserName("***");
-        connectionFactory.setPassword("***");
+		// Create a connection factory.
+		
+		ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(url);
+
+		connectionFactory.setUserName(usrname);
+		connectionFactory.setPassword(pwd);
         String clientid = UUID.randomUUID().toString();     
         //connectionFactory.setClientID("Virtual");
         // Establish a connection for the consumer.
